@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <footer>
+        <p>                         SEGUNDO PARCIAL TEM-742</p>
+        <p>                         Nombre: Eddy Ivan Pari Layme</p>
+        <p>                         Carnet: 10074660</p>
+    </footer>
+
+
+    <title>Gestión de productos</title>
+</head>
+<body>
+    <h1>Gestión de productos</h1>
+    <form method="POST" action="/add_product">
+        <input type="text" name="id" placeholder="ID" required>
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="number" name="quantity" placeholder="Cantidad" required>
+        <input type="number" step="0.01" name="price" placeholder="Precio" required>
+        <input type="date" name="expiration_date" required>
+        <input type="text" name="category" placeholder="Categoría" required>
+        <button type="submit">Agregar producto</button>
+    </form>
+
+    <h2>Lista de productos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.category }}</td>
+                <td>
+                    <a href="/edit_product/{{ product.id }}">Editar</a>
+                    <a href="/delete_product/{{ product.id }}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
